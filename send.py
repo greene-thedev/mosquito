@@ -15,7 +15,7 @@ Connected = False  # global variable for the state of the connection
 
 client = mqtt.Client()
 client.on_connect = on_connect
-client.connect("192.168.1.x", 1883, 60)
+client.connect("broker.emqx.io")
 client.loop_start()  # start the loop
 
 while Connected != True:  # Wait for connection
@@ -25,7 +25,7 @@ while Connected != True:  # Wait for connection
 try:
     while True:
         message = input('Your message: ')
-        client.publish("glblcd/sam", message)
+        client.publish("communication", "Bug: " + message)
 
 except KeyboardInterrupt:
     client.disconnect()
